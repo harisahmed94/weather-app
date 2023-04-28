@@ -1,0 +1,85 @@
+.highlight-box {
+  background: $background-light;
+  padding-top: 2.2rem;
+  padding-bottom: 2.5rem;
+  // width: 325px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__name {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  &__value {
+    font-size: 3.6rem;
+    font-weight: 500;
+  }
+
+  &__number {
+    font-size: 6.4rem;
+    font-weight: 700;
+  }
+
+  &__details {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 3rem;
+  }
+
+  &__label {
+    width: 185px;
+    margin-bottom: 0.2rem;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__label-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.4rem;
+  }
+
+  &__progress {
+    /* resetting the default appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* removing default border in firefox */
+    border: none;
+
+    /* IE 10 and above*/
+    color: $yellow;
+
+    display: block;
+    width: 185px;
+    height: 8px;
+
+    /* webkit browser styling */
+
+    &::-webkit-progress-bar {
+      background-color: $primary-text;
+      border-radius: 8rem;
+    }
+
+    &::-webkit-progress-value {
+      border-radius: 8rem;
+      background-color: $yellow;
+    }
+
+    /* firefox styling */
+
+    background-color: $primary-text;
+    border-radius: 8rem;
+
+    &::-moz-progress-bar {
+      background-color: $yellow;
+      border-radius: 8rem;
+    }
+  }
+}

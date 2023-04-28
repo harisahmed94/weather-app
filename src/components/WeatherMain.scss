@@ -1,0 +1,107 @@
+.weather-main {
+  position: relative;
+  background: $background-light;
+  min-width: 270px;
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+  // width: 31%;
+  @include screen-lg {
+    flex: 1;
+  }
+
+  // &__container {
+  //   width: 80%;
+  //   margin: 0 auto;
+  // }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // height: 10%;
+    padding-top: 4rem;
+    // padding-bottom: 3rem;
+  }
+
+  &__btn {
+    font-family: $app-font-family;
+    background: $purple;
+    color: $primary-text;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1rem 1.8rem;
+    cursor: pointer;
+    border-color: none;
+  }
+
+  &__image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 150% auto;
+    // height: 30%;
+    height: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__img {
+    // width: 125px;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    // height: 60%;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  &__temp {
+    padding-bottom: 8rem;
+  }
+
+  &__value {
+    font-size: 14.4rem;
+    font-weight: 500;
+    line-height: 5.6rem;
+  }
+
+  &__unit {
+    font-size: 4.8rem;
+    font-weight: 500;
+    color: $secondary-text;
+  }
+
+  &__condition {
+    font-size: 3.6rem;
+    font-weight: 600;
+    color: $secondary-text;
+    padding-bottom: 8rem;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__dayDate {
+    margin-bottom: 3.2rem;
+  }
+
+  &__day,
+  &__date {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: $secondary-text;
+  }
+
+  &__location {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $secondary-text;
+  }
+}

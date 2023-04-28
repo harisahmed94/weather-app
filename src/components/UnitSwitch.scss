@@ -1,0 +1,29 @@
+.unit-switch {
+  margin-top: 4.2rem;
+  margin-bottom: 6.6rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__unit {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+    background-color: $purple;
+    color: $primary-text;
+    border: none;
+    margin-right: 1.2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &--selected {
+      color: $dark-text;
+      background-color: $primary-text;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
