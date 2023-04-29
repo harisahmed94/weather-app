@@ -12,7 +12,7 @@ import WeatherMain from "./WeatherMain";
 import { unitConverter } from "../utils/unit-converter";
 import usePrevious from "../hooks/usePrevious";
 import useFetch from "../hooks/useFetch";
-import { mapState } from "../services/mapAppState";
+import mapAppState from "../services/mapAppState";
 import UnitSwitch from "./UnitSwitch";
 import Footer from "./Footer";
 import WeatherForecasts from "./WeatherForecasts";
@@ -21,6 +21,7 @@ import { WeatherData } from "../../types/api-types";
 import WeatherMainSkeleton from "./WatherMainSkeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./Main.scss";
+import useMappedState from "../hooks/useMappedState";
 
 const INITIAL_LOCATION = "tallinn";
 
@@ -29,51 +30,37 @@ const Main: FC = () => {
   const [unit, setUnit] = useState<unitsType>(units.C);
   let { data, loading } = useFetch<WeatherData>(location);
   // loading = true;
-
-  const [mainState, setMainState] = useState<mainStateType>();
-  const [forecastsState, setForecastsState] = useState<forecastsStateType>();
-  const [highlightsState, setHighlightsState] = useState<highlightsStateType>();
+  const { mainState, forecastsState, highlightsState } = useMappedState(data);
   const prevUnit = usePrevious(unit);
 
-  useEffect(() => {
-    if (data) {
-      const { mainStateObj, forecastsStateArr, highlightsStateArr } =
-        mapState(data);
-      setMainState(mainStateObj);
-      setForecastsState(forecastsStateArr);
-      console.log(forecastsStateArr);
-      setHighlightsState(highlightsStateArr);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (mainState && forecastsState) {
+  //     console.log(prevUnit);
 
-  useEffect(() => {
-    if (mainState && forecastsState) {
-      console.log(prevUnit);
-
-      setMainState(
-        produce((draft) => {
-          draft!.temp = unitConverter(draft!.temp, unit, prevUnit);
-        })
-      );
-      setForecastsState(
-        produce((draft) => {
-          draft!.map((forecast) => {
-            forecast.max_temp = unitConverter(
-              forecast.max_temp,
-              unit,
-              prevUnit
-            );
-            forecast.min_temp = unitConverter(
-              forecast.min_temp,
-              unit,
-              prevUnit
-            );
-            return forecast;
-          });
-        })
-      );
-    }
-  }, [unit]);
+  //     setMainState(
+  //       produce((draft) => {
+  //         draft!.temp = unitConverter(draft!.temp, unit, prevUnit);
+  //       })
+  //     );
+  //     setForecastsState(
+  //       produce((draft) => {
+  //         draft!.map((forecast) => {
+  //           forecast.max_temp = unitConverter(
+  //             forecast.max_temp,
+  //             unit,
+  //             prevUnit
+  //           );
+  //           forecast.min_temp = unitConverter(
+  //             forecast.min_temp,
+  //             unit,
+  //             prevUnit
+  //           );
+  //           return forecast;
+  //         });
+  //       })
+  //     );
+  //   }
+  // }, [unit]);
 
   const handleUnitChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     setUnit(e.currentTarget.value as unitsType);

@@ -4,7 +4,7 @@ import axios from "axios";
 const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 function useFetch<DataType>(parameter: string) {
-  const [data, setData] = useState<DataType | null>(null);
+  const [data, setData] = useState<DataType>();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

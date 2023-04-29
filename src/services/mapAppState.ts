@@ -1,9 +1,8 @@
-import _pick from "lodash/pick";
 import { highlightsStateType } from "./fakeWeatherService";
 
 import { WeatherData } from "../../types/api-types";
 
-export const mapState = (data: WeatherData) => {
+const mapAppState = (data: WeatherData) => {
   const mainStateObj = {
     temp: Math.round(data.list[0].main.temp),
     weatherState: data.list[0].weather[0].main,
@@ -11,9 +10,6 @@ export const mapState = (data: WeatherData) => {
     location: data.city.name,
     icon: data.list[0].weather[0].icon,
   };
-
-  const filtered = data.list.filter((_, index) => index % 8 === 0);
-  console.log(filtered);
 
   const forecastsStateArr = data.list
     .filter((_, index) => index % 8 === 0)
@@ -36,3 +32,5 @@ export const mapState = (data: WeatherData) => {
 
   return { mainStateObj, forecastsStateArr, highlightsStateArr };
 };
+
+export default mapAppState;
