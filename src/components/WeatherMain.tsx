@@ -44,7 +44,7 @@ const WeatherMain: FC<WeatherMainProps> = ({
       </div>
       <div className="weather-main__summary">
         <div className="weather-main__temp">
-          <span className="weather-main__value">{temp}</span>{" "}
+          <span className="weather-main__value">{temp[unit]}</span>{" "}
           <span className="weather-main__unit">&#176;{unit}</span>
         </div>
         <span className="weather-main__condition">{weatherState}</span>

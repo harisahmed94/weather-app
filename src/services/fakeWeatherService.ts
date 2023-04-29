@@ -1,6 +1,6 @@
 export enum units {
-  "C" = "C",
-  "F" = "F",
+  C = "C",
+  F = "F",
 }
 
 export type unitsType = keyof typeof units;
@@ -12,10 +12,12 @@ export enum supportedHighlights {
   "air" = "air",
 }
 
+type Temperature = { [units.C]: number; [units.F]: number };
+
 export type forecastObjType = {
   applicable_date: string;
-  min_temp: number;
-  max_temp: number;
+  min_temp: Temperature;
+  max_temp: Temperature;
   icon: string;
 };
 
@@ -34,7 +36,7 @@ export type highlightsStateType = [
 export type highlightsStateKeys = keyof typeof supportedHighlights;
 
 export type mainStateType = {
-  temp: number;
+  temp: Temperature;
   weatherState: string;
   dateString: string;
   location: string;

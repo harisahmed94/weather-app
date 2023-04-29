@@ -28,10 +28,10 @@ const WeatherForecastCard: FC<WeatherForecastCardProps> = ({
       />
       <div className="weather-details__forecast-temp">
         <span className="weather-details__forecast-value">
-          {forecast.max_temp}&#176;{unit}
+          {forecast.max_temp[unit]}&#176;{unit}
         </span>
         <span className="weather-details__forecast-value  weather-details__forecast-value--min">
-          {forecast.min_temp}&#176;{unit}
+          {forecast.min_temp[unit]}&#176;{unit}
         </span>
       </div>
     </div>
