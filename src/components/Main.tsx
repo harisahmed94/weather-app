@@ -18,7 +18,8 @@ const INITIAL_LOCATION = "tallinn";
 const Main: FC = () => {
   const [location, setLocation] = useState(INITIAL_LOCATION);
   const [unit, setUnit] = useState<unitsType>(units.C);
-  const { data, loading } = useFetch<WeatherData>(location);
+  let { data, loading } = useFetch<WeatherData>(location);
+  // loading = true;
   const { mainState, forecastsState, highlightsState } = useMappedState(data);
 
   const handleUnitChange = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,13 +28,12 @@ const Main: FC = () => {
 
   return (
     <div className="container">
-      {mainState && (
-        <WeatherMain
-          mainState={mainState}
-          unit={unit}
-          setLocation={setLocation}
-        />
-      )}
+      <WeatherMain
+        mainState={mainState}
+        unit={unit}
+        setLocation={setLocation}
+        loading={loading}
+      />
       <div className="weather-details">
         <UnitSwitch unit={unit} unitChangeHandler={handleUnitChange} />
         <WeatherForecasts

@@ -2,6 +2,10 @@
   position: relative;
   background: $background-light;
   min-width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
   // padding-left: 1rem;
   // padding-right: 1rem;
   // width: 31%;
