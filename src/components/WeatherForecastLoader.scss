@@ -1,0 +1,7 @@
+.forecast-box {
+  width: 120px;
+
+  @include screen-sm {
+    width: 100%;
+  }
+}

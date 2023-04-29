@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { highlightsStateWind } from "../services/fakeWeatherService";
 import "./HighlightBox.scss";
 

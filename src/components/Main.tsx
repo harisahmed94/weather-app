@@ -27,13 +27,12 @@ const INITIAL_LOCATION = "tallinn";
 const Main: FC = () => {
   const [location, setLocation] = useState(INITIAL_LOCATION);
   const [unit, setUnit] = useState<unitsType>(units.C);
-  const { data } = useFetch<WeatherData>(location);
+  let { data, loading } = useFetch<WeatherData>(location);
+  // loading = true;
 
   const [mainState, setMainState] = useState<mainStateType>();
-  const [forecastsState, setForecastsState] =
-    useState<forecastsStateType | null>(null);
-  const [highlightsState, setHighlightsState] =
-    useState<highlightsStateType | null>(null);
+  const [forecastsState, setForecastsState] = useState<forecastsStateType>();
+  const [highlightsState, setHighlightsState] = useState<highlightsStateType>();
   const prevUnit = usePrevious(unit);
 
   useEffect(() => {
@@ -89,13 +88,14 @@ const Main: FC = () => {
           setLocation={setLocation}
         />
       )}
-      {/* <WeatherMainSkeleton /> */}
       <div className="weather-details">
         <UnitSwitch unit={unit} unitChangeHandler={handleUnitChange} />
-        {forecastsState && (
-          <WeatherForecasts unit={unit} forecastsState={forecastsState} />
-        )}
-        {highlightsState && <Highlights highlightsState={highlightsState} />}
+        <WeatherForecasts
+          loading={loading}
+          unit={unit}
+          forecastsState={forecastsState}
+        />
+        <Highlights loading={loading} highlightsState={highlightsState} />
         <Footer />
       </div>
     </div>
