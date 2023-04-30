@@ -23,7 +23,7 @@ const HighlightBox: FC<Props> = ({ data, title, unit }) => {
           <span className={b("value")}>
             <span className={b("number")}>{Math.round(data[0])}</span> {unit}
           </span>
-          <span className={b("details")}>{data[1]}</span>
+          <span className={b("details")}>{data[1]}&#176;</span>
         </>
       );
     }
