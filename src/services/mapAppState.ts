@@ -1,10 +1,9 @@
 import { HighlightsData } from "./app-types";
-
 import { WeatherData } from "./api-types";
 import { UnitsEnum } from "./app-types";
 
 const mapAppState = (data: WeatherData) => {
-  const mainStateObj = {
+  const sidebarMapped = {
     temp: {
       [UnitsEnum.C]: Math.round(data.list[0].main.temp),
       [UnitsEnum.F]: unitConverter(data.list[0].main.temp),
@@ -15,7 +14,7 @@ const mapAppState = (data: WeatherData) => {
     icon: data.list[0].weather[0].icon,
   };
 
-  const forecastsStateArr = data.list
+  const forecastsMapped = data.list
     .filter((_, index) => index % 8 === 0)
     .map((item) => ({
       min_temp: {
@@ -30,7 +29,7 @@ const mapAppState = (data: WeatherData) => {
       icon: item.weather[0].icon,
     }));
 
-  const highlightsStateArr: HighlightsData = [
+  const highlightsMapped: HighlightsData = [
     {
       value: [Math.round(data.list[0].wind.speed), data.list[0].wind.deg],
     },
@@ -39,7 +38,7 @@ const mapAppState = (data: WeatherData) => {
     { value: Math.round(data.list[0].main.pressure) },
   ];
 
-  return { mainStateObj, forecastsStateArr, highlightsStateArr };
+  return { sidebarMapped, forecastsMapped, highlightsMapped };
 };
 
 export default mapAppState;

@@ -15,11 +15,11 @@ const useMappedState = (data?: WeatherData) => {
 
   useEffect(() => {
     if (data) {
-      const { mainStateObj, forecastsStateArr, highlightsStateArr } =
+      const { sidebarMapped, forecastsMapped, highlightsMapped } =
         mapAppState(data);
-      setSidebarData(mainStateObj);
-      setForecastsData(forecastsStateArr);
-      setHighlightsData(highlightsStateArr);
+      setSidebarData(sidebarMapped);
+      setForecastsData(forecastsMapped);
+      setHighlightsData(highlightsMapped);
     }
   }, [data]);
 
