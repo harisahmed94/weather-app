@@ -1,37 +1,37 @@
 import { FC } from "react";
 import block from "bem-css-modules";
 
-import { units, unitsType } from "../services/app-types";
+import { UnitsEnum, Units } from "../services/app-types";
 
 import s from "./UnitSwitch.module.scss";
 const b = block(s);
 
-interface UnitSwitchProps {
-  unit: unitsType;
+interface Props {
+  unit: Units;
   unitChangeHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const UnitSwitch: FC<UnitSwitchProps> = ({ unit, unitChangeHandler }) => {
-  const isCelsius = unit === units.C;
+const UnitSwitch: FC<Props> = ({ unit, unitChangeHandler }) => {
+  const isCelsius = unit === UnitsEnum.C;
   return (
     <div className={b()}>
       <button
         className={b("unit", {
           selected: isCelsius,
         })}
-        value={units.C}
+        value={UnitsEnum.C}
         onClick={unitChangeHandler}
       >
-        &#176;{units.C}
+        &#176;{UnitsEnum.C}
       </button>
       <button
         className={b("unit", {
           selected: !isCelsius,
         })}
-        value={units.F}
+        value={UnitsEnum.F}
         onClick={unitChangeHandler}
       >
-        &#176;{units.F}
+        &#176;{UnitsEnum.F}
       </button>
     </div>
   );

@@ -1,44 +1,35 @@
-export enum units {
+export enum UnitsEnum {
   C = "C",
   F = "F",
 }
 
-export type unitsType = keyof typeof units;
+export type Units = keyof typeof UnitsEnum;
 
-export enum supportedHighlights {
-  "wind" = "wind",
-  "humidity" = "humidity",
-  "visibility" = "visibility",
-  "air" = "air",
-}
+type Temperature = { [UnitsEnum.C]: number; [UnitsEnum.F]: number };
 
-type Temperature = { [units.C]: number; [units.F]: number };
-
-export type forecastObjType = {
-  applicable_date: string;
-  min_temp: Temperature;
-  max_temp: Temperature;
-  icon: string;
-};
-
-export type forecastsStateType = forecastObjType[];
-
-export type highlightsStateWind = [number, number];
-export type highlightsStateOther = { value: number };
-
-export type highlightsStateType = [
-  { value: highlightsStateWind },
-  highlightsStateOther,
-  highlightsStateOther,
-  highlightsStateOther
-];
-
-export type highlightsStateKeys = keyof typeof supportedHighlights;
-
-export type mainStateType = {
+export type SidebarData = {
   temp: Temperature;
   weatherState: string;
   dateString: string;
   location: string;
   icon: string;
 };
+
+export type Forecast = {
+  applicable_date: string;
+  min_temp: Temperature;
+  max_temp: Temperature;
+  icon: string;
+};
+
+export type ForecastsData = Forecast[];
+
+export type HighlightWind = [number, number];
+export type HighlightOther = { value: number };
+
+export type HighlightsData = [
+  { value: HighlightWind },
+  HighlightOther,
+  HighlightOther,
+  HighlightOther
+];

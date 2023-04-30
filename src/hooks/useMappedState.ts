@@ -1,29 +1,33 @@
 import { useState, useEffect } from "react";
 
 import {
-  forecastsStateType,
-  highlightsStateType,
-  mainStateType,
+  ForecastsData,
+  HighlightsData,
+  SidebarData,
 } from "../services/app-types";
 import mapAppState from "../services/mapAppState";
 import { WeatherData } from "../services/api-types";
 
 const useMappedState = (data?: WeatherData) => {
-  const [mainState, setMainState] = useState<mainStateType>();
-  const [forecastsState, setForecastsState] = useState<forecastsStateType>();
-  const [highlightsState, setHighlightsState] = useState<highlightsStateType>();
+  const [sidebarData, setSidebarData] = useState<SidebarData>();
+  const [forecastsData, setForecastsData] = useState<ForecastsData>();
+  const [highlightsData, setHighlightsData] = useState<HighlightsData>();
 
   useEffect(() => {
     if (data) {
       const { mainStateObj, forecastsStateArr, highlightsStateArr } =
         mapAppState(data);
-      setMainState(mainStateObj);
-      setForecastsState(forecastsStateArr);
-      setHighlightsState(highlightsStateArr);
+      setSidebarData(mainStateObj);
+      setForecastsData(forecastsStateArr);
+      setHighlightsData(highlightsStateArr);
     }
   }, [data]);
 
-  return { mainState, forecastsState, highlightsState };
+  return {
+    sidebarData,
+    forecastsData,
+    highlightsData,
+  };
 };
 
 export default useMappedState;

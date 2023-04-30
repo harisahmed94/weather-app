@@ -1,23 +1,19 @@
 import { FC } from "react";
 import block from "bem-css-modules";
 
-import { forecastObjType, unitsType } from "../services/app-types";
+import { Forecast, Units } from "../services/app-types";
 import { dateParser } from "../utils/day-date";
 
 import s from "./ForecastCard.module.scss";
 const b = block(s);
 
-interface WeatherForecastCardProps {
-  forecast: forecastObjType;
+interface Props {
+  forecast: Forecast;
   index: number;
-  unit: unitsType;
+  unit: Units;
 }
 
-const ForecastCard: FC<WeatherForecastCardProps> = ({
-  forecast,
-  index,
-  unit,
-}) => {
+const ForecastCard: FC<Props> = ({ forecast, index, unit }) => {
   return (
     <div key={index} className={b("card")}>
       <span className={b("day")}>

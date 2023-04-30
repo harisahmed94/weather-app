@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import block from "bem-css-modules";
 
-import { unitsType, mainStateType } from "../services/app-types";
+import { Units, SidebarData } from "../services/app-types";
 import { dateParser } from "../utils/day-date";
 import Search from "./Search";
 import SidebarLoader from "./SidebarLoader";
@@ -9,27 +9,19 @@ import SidebarLoader from "./SidebarLoader";
 import s from "./Sidebar.module.scss";
 const b = block(s);
 
-type mainStateProps = {
-  mainState?: mainStateType;
-};
-
-type WeatherMainProps = mainStateProps & {
-  unit: unitsType;
+type Props = {
+  sidebarData?: SidebarData;
+  unit: Units;
   loading: boolean;
   setLocation: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Sidebar: FC<WeatherMainProps> = ({
-  mainState,
-  unit,
-  setLocation,
-  loading,
-}) => {
+const Sidebar: FC<Props> = ({ sidebarData, unit, setLocation, loading }) => {
   const [searchVisible, setSearchVisible] = useState(false);
 
   const displayContent = () => {
-    if (mainState) {
-      const { temp, weatherState, dateString, location, icon } = mainState;
+    if (sidebarData) {
+      const { temp, weatherState, dateString, location, icon } = sidebarData;
       const [day, date, month] = dateParser(dateString);
       return (
         <>

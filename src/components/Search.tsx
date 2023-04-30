@@ -13,12 +13,12 @@ import cities from "../services/cities.json";
 import s from "./Search.module.scss";
 const b = block(s);
 
-interface SearchProps {
+interface Props {
   handleClose: Dispatch<SetStateAction<boolean>>;
   setLocation: Dispatch<SetStateAction<string>>;
 }
 
-const Search: FC<SearchProps> = ({ handleClose, setLocation }) => {
+const Search: FC<Props> = ({ handleClose, setLocation }) => {
   const [searchState, setSearchState] = useState<string>("");
   const [searchResults, setSearchResults] = useState<typeof cities>([]);
 

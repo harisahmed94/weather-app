@@ -1,13 +1,13 @@
-import { highlightsStateType } from "./app-types";
+import { HighlightsData } from "./app-types";
 
 import { WeatherData } from "./api-types";
-import { units } from "./app-types";
+import { UnitsEnum } from "./app-types";
 
 const mapAppState = (data: WeatherData) => {
   const mainStateObj = {
     temp: {
-      [units.C]: Math.round(data.list[0].main.temp),
-      [units.F]: unitConverter(data.list[0].main.temp),
+      [UnitsEnum.C]: Math.round(data.list[0].main.temp),
+      [UnitsEnum.F]: unitConverter(data.list[0].main.temp),
     },
     weatherState: data.list[0].weather[0].main,
     dateString: data.list[0].dt_txt,
@@ -19,18 +19,18 @@ const mapAppState = (data: WeatherData) => {
     .filter((_, index) => index % 8 === 0)
     .map((item) => ({
       min_temp: {
-        [units.C]: Math.round(item.main.temp_min),
-        [units.F]: unitConverter(item.main.temp_min),
+        [UnitsEnum.C]: Math.round(item.main.temp_min),
+        [UnitsEnum.F]: unitConverter(item.main.temp_min),
       },
       max_temp: {
-        [units.C]: Math.round(item.main.temp_max),
-        [units.F]: unitConverter(item.main.temp_max),
+        [UnitsEnum.C]: Math.round(item.main.temp_max),
+        [UnitsEnum.F]: unitConverter(item.main.temp_max),
       },
       applicable_date: item.dt_txt,
       icon: item.weather[0].icon,
     }));
 
-  const highlightsStateArr: highlightsStateType = [
+  const highlightsStateArr: HighlightsData = [
     {
       value: [Math.round(data.list[0].wind.speed), data.list[0].wind.deg],
     },

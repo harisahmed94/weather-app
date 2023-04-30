@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import block from "bem-css-modules";
 
-import { unitsType, units } from "../services/app-types";
+import { Units, UnitsEnum } from "../services/app-types";
 import Sidebar from "./SideBar";
 import useFetch from "../hooks/useFetch";
 import UnitSwitch from "./UnitSwitch";
@@ -18,18 +18,18 @@ const INITIAL_LOCATION = "tallinn";
 
 const Main: FC = () => {
   const [location, setLocation] = useState(INITIAL_LOCATION);
-  const [unit, setUnit] = useState<unitsType>(units.C);
+  const [unit, setUnit] = useState<Units>(UnitsEnum.C);
   const { data, loading } = useFetch<WeatherData>(location);
-  const { mainState, forecastsState, highlightsState } = useMappedState(data);
+  const { sidebarData, forecastsData, highlightsData } = useMappedState(data);
 
   const handleUnitChange = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setUnit(e.currentTarget.value as unitsType);
+    setUnit(e.currentTarget.value as Units);
   };
 
   return (
     <div className={b()}>
       <Sidebar
-        mainState={mainState}
+        sidebarData={sidebarData}
         unit={unit}
         setLocation={setLocation}
         loading={loading}
@@ -39,9 +39,9 @@ const Main: FC = () => {
         <Forecasts
           loading={loading}
           unit={unit}
-          forecastsState={forecastsState}
+          forecastsState={forecastsData}
         />
-        <Highlights loading={loading} highlightsState={highlightsState} />
+        <Highlights loading={loading} highlightsState={highlightsData} />
         <Footer />
       </div>
     </div>

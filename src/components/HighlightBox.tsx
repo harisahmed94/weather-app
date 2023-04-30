@@ -1,20 +1,20 @@
 import { FC } from "react";
 import block from "bem-css-modules";
 
-import { highlightsStateWind } from "../services/app-types";
+import { HighlightWind } from "../services/app-types";
 
 import s from "./HighlightBox.module.scss";
 const b = block(s);
 
-interface HighlightBoxProps {
+interface Props {
   title: string;
   unit: string;
-  data: highlightsStateWind | number;
+  data: HighlightWind | number;
 }
 
 const MAX_PROGRESS = 100;
 
-const HighlightBox: FC<HighlightBoxProps> = ({ data, title, unit }) => {
+const HighlightBox: FC<Props> = ({ data, title, unit }) => {
   const renderBoxData = () => {
     if (Array.isArray(data)) {
       return (

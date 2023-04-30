@@ -1,24 +1,20 @@
 import { FC } from "react";
 import block from "bem-css-modules";
 
-import { forecastsStateType, unitsType } from "../services/app-types";
+import { ForecastsData, Units } from "../services/app-types";
 import ForecastCard from "./ForecastCard";
 import ForecastCardLoader from "./ForecastCardLoader";
 
 import s from "./Forecasts.module.scss";
 const b = block(s);
 
-interface WeatherForecastsProps {
-  forecastsState?: forecastsStateType;
-  unit: unitsType;
+interface Props {
+  forecastsState?: ForecastsData;
+  unit: Units;
   loading: boolean;
 }
 
-const Forecasts: FC<WeatherForecastsProps> = ({
-  forecastsState,
-  unit,
-  loading,
-}) => {
+const Forecasts: FC<Props> = ({ forecastsState, unit, loading }) => {
   const skeleton = [1, 2, 3, 4, 5];
 
   return (
