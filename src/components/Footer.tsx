@@ -1,18 +1,25 @@
-import React, { FC } from "react";
-import "./Footer.scss";
+import block from "bem-css-modules";
 
-interface FooterProps {}
+import s from "./Footer.module.scss";
+const b = block(s);
 
-const Footer: FC<FooterProps> = () => {
+const Footer = () => {
   return (
-    <div className="footer">
-      <p className="footer__text">
+    <div className={b()}>
+      <p className={b("text")}>
         created by{" "}
-        <a className="footer__link" href="#">
-          <strong className="footer__thick">Haris Ahmed</strong>
+        <a
+          className={b("link")}
+          target="_blank"
+          href="https://harisahmed94.github.io/portfolio/"
+        >
+          <strong className={b("thick")}>Haris Ahmed</strong>,
         </a>{" "}
-        -{" "}
-        <a className="footer__link" href="#">
+        designed by -{" "}
+        <a
+          className={b("link")}
+          href="https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv"
+        >
           devChallenges.io
         </a>
       </p>

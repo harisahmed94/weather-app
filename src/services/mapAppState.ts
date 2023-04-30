@@ -1,7 +1,7 @@
-import { highlightsStateType } from "./fakeWeatherService";
+import { highlightsStateType } from "./app-types";
 
-import { WeatherData } from "../../types/api-types";
-import { units } from "./fakeWeatherService";
+import { WeatherData } from "./api-types";
+import { units } from "./app-types";
 
 const mapAppState = (data: WeatherData) => {
   const mainStateObj = {
@@ -35,7 +35,6 @@ const mapAppState = (data: WeatherData) => {
       value: [Math.round(data.list[0].wind.speed), data.list[0].wind.deg],
     },
     { value: Math.round(data.list[0].main.humidity) },
-    // { value: Math.round(data.list[0].visibility / 1000) },
     { value: data.list[0].visibility / 1000 },
     { value: Math.round(data.list[0].main.pressure) },
   ];

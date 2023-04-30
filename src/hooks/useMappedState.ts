@@ -4,9 +4,9 @@ import {
   forecastsStateType,
   highlightsStateType,
   mainStateType,
-} from "../services/fakeWeatherService";
+} from "../services/app-types";
 import mapAppState from "../services/mapAppState";
-import { WeatherData } from "../../types/api-types";
+import { WeatherData } from "../services/api-types";
 
 const useMappedState = (data?: WeatherData) => {
   const [mainState, setMainState] = useState<mainStateType>();

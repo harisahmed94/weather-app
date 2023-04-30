@@ -1,10 +1,7 @@
 import ContentLoader from "react-content-loader";
 
-import "./WeatherMainLoader.scss";
-
-const WeatherMainLoader = () => (
+const SidebarLoader = () => (
   <ContentLoader
-    className="loader-sidebar"
     height={750}
     width={270}
     backgroundColor="#100e1d"
@@ -19,4 +16,4 @@ const WeatherMainLoader = () => (
   </ContentLoader>
 );
 
-export default WeatherMainLoader;
+export default SidebarLoader;

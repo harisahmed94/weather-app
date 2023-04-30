@@ -1,0 +1,19 @@
+.forecasts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 2.6rem;
+  row-gap: 2.6rem;
+  margin-bottom: 7rem;
+
+  @include screen-lg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include screen-md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include screen-sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

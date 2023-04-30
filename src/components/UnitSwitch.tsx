@@ -1,7 +1,10 @@
-import React, { FC } from "react";
-import classNames from "classnames";
-import { units, unitsType } from "../services/fakeWeatherService";
-import "./UnitSwitch.scss";
+import { FC } from "react";
+import block from "bem-css-modules";
+
+import { units, unitsType } from "../services/app-types";
+
+import s from "./UnitSwitch.module.scss";
+const b = block(s);
 
 interface UnitSwitchProps {
   unit: unitsType;
@@ -11,10 +14,10 @@ interface UnitSwitchProps {
 const UnitSwitch: FC<UnitSwitchProps> = ({ unit, unitChangeHandler }) => {
   const isCelsius = unit === units.C;
   return (
-    <div className="unit-switch">
+    <div className={b()}>
       <button
-        className={classNames("unit-switch__unit", {
-          "unit-switch__unit--selected": isCelsius,
+        className={b("unit", {
+          selected: isCelsius,
         })}
         value={units.C}
         onClick={unitChangeHandler}
@@ -22,8 +25,8 @@ const UnitSwitch: FC<UnitSwitchProps> = ({ unit, unitChangeHandler }) => {
         &#176;{units.C}
       </button>
       <button
-        className={classNames("unit-switch__unit", {
-          "unit-switch__unit--selected": !isCelsius,
+        className={b("unit", {
+          selected: !isCelsius,
         })}
         value={units.F}
         onClick={unitChangeHandler}

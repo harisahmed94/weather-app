@@ -1,25 +1,25 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
+import block from "bem-css-modules";
 
-import { unitsType, units } from "../services/fakeWeatherService";
-import WeatherMain from "./WeatherMain";
+import { unitsType, units } from "../services/app-types";
+import Sidebar from "./SideBar";
 import useFetch from "../hooks/useFetch";
 import UnitSwitch from "./UnitSwitch";
 import Footer from "./Footer";
-import WeatherForecasts from "./WeatherForecasts";
+import Forecasts from "./Forecasts";
 import Highlights from "./Highlights";
-import { WeatherData } from "../../types/api-types";
+import { WeatherData } from "../services/api-types";
 import useMappedState from "../hooks/useMappedState";
 
-import "react-loading-skeleton/dist/skeleton.css";
-import "./Main.scss";
+import s from "./Main.module.scss";
+const b = block(s);
 
 const INITIAL_LOCATION = "tallinn";
 
 const Main: FC = () => {
   const [location, setLocation] = useState(INITIAL_LOCATION);
   const [unit, setUnit] = useState<unitsType>(units.C);
-  let { data, loading } = useFetch<WeatherData>(location);
-  // loading = true;
+  const { data, loading } = useFetch<WeatherData>(location);
   const { mainState, forecastsState, highlightsState } = useMappedState(data);
 
   const handleUnitChange = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,16 +27,16 @@ const Main: FC = () => {
   };
 
   return (
-    <div className="container">
-      <WeatherMain
+    <div className={b()}>
+      <Sidebar
         mainState={mainState}
         unit={unit}
         setLocation={setLocation}
         loading={loading}
       />
-      <div className="weather-details">
+      <div className={b("details")}>
         <UnitSwitch unit={unit} unitChangeHandler={handleUnitChange} />
-        <WeatherForecasts
+        <Forecasts
           loading={loading}
           unit={unit}
           forecastsState={forecastsState}

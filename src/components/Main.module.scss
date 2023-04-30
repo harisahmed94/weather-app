@@ -1,0 +1,18 @@
+.main-container {
+  display: flex;
+
+  @include screen-sm {
+    display: block;
+  }
+
+  &__details {
+    max-width: 950px;
+    margin: 0 auto;
+
+    @include screen-lg {
+      flex: 3;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}

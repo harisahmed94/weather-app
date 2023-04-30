@@ -1,30 +1,20 @@
-.weather-main {
+.sidebar {
   position: relative;
   background: $background-light;
   min-width: 270px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
-  // padding-left: 1rem;
-  // padding-right: 1rem;
-  // width: 31%;
+
   @include screen-lg {
     flex: 1;
   }
-
-  // &__container {
-  //   width: 80%;
-  //   margin: 0 auto;
-  // }
 
   &__search {
     display: flex;
     align-items: center;
     justify-content: center;
-    // height: 10%;
     padding-top: 4rem;
-    // padding-bottom: 3rem;
   }
 
   &__btn {
@@ -42,15 +32,10 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 150% auto;
-    // height: 30%;
     height: 225px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  &__img {
-    // width: 125px;
   }
 
   &__summary {
@@ -58,7 +43,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    // height: 60%;
     padding-top: 3rem;
     padding-bottom: 5rem;
   }

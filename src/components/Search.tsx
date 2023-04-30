@@ -1,4 +1,4 @@
-import React, {
+import {
   ChangeEvent,
   FC,
   useEffect,
@@ -6,8 +6,12 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
+import block from "bem-css-modules";
+
 import cities from "../services/cities.json";
-import "./Search.scss";
+
+import s from "./Search.module.scss";
+const b = block(s);
 
 interface SearchProps {
   handleClose: Dispatch<SetStateAction<boolean>>;
@@ -44,26 +48,26 @@ const Search: FC<SearchProps> = ({ handleClose, setLocation }) => {
   }, [searchState]);
 
   return (
-    <div className="search">
-      <div onClick={() => handleClose(false)} className="search__close">
+    <div className={b()}>
+      <div onClick={() => handleClose(false)} className={b("close")}>
         &#x2715;
       </div>
       <input
-        className="search__box"
+        className={b("box")}
         type="search"
         placeholder="Search Location"
         value={searchState}
         onChange={handleChange}
       ></input>
-      <ul className="search__results">
+      <ul className={b("results")}>
         {searchResults &&
           searchResults.map((result) => {
             return (
-              <li key={result.name} className="search__item">
+              <li key={result.name} className={b("item")}>
                 <a
                   onClick={(e) => onSearchSelect(result.name, e)}
                   href="#"
-                  className="search__link"
+                  className={b("link")}
                 >
                   {result.name}
                 </a>

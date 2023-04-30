@@ -1,10 +1,12 @@
 import ContentLoader from "react-content-loader";
+import block from "bem-css-modules";
 
-import "./WeatherForecastLoader.scss";
+import s from "./ForecastCardLoader.module.scss";
+const b = block(s);
 
-const WeatherForecastLoader = () => (
+const ForecastCardLoader = () => (
   <ContentLoader
-    className="forecast-box"
+    className={b()}
     height={170}
     backgroundColor="#1e213a"
     foregroundColor="#585676"
@@ -13,4 +15,4 @@ const WeatherForecastLoader = () => (
   </ContentLoader>
 );
 
-export default WeatherForecastLoader;
+export default ForecastCardLoader;

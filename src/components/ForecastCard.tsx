@@ -1,36 +1,38 @@
 import { FC } from "react";
+import block from "bem-css-modules";
 
-import { forecastObjType, unitsType } from "../services/fakeWeatherService";
+import { forecastObjType, unitsType } from "../services/app-types";
 import { dateParser } from "../utils/day-date";
+
+import s from "./ForecastCard.module.scss";
+const b = block(s);
 
 interface WeatherForecastCardProps {
   forecast: forecastObjType;
   index: number;
   unit: unitsType;
-  // loading: boolean;
 }
 
-const WeatherForecastCard: FC<WeatherForecastCardProps> = ({
+const ForecastCard: FC<WeatherForecastCardProps> = ({
   forecast,
   index,
   unit,
-  // loading,
 }) => {
   return (
-    <div key={index} className="weather-details__forecast">
-      <span className="weather-details__forecast-day">
+    <div key={index} className={b("card")}>
+      <span className={b("day")}>
         {renderForecastDay(forecast.applicable_date, index)}
       </span>
 
       <img
-        className="weather-details__forecast-image"
+        className={b("image")}
         src={`https://openweathermap.org/img/wn/${forecast.icon}@4x.png`}
       />
-      <div className="weather-details__forecast-temp">
-        <span className="weather-details__forecast-value">
+      <div>
+        <span className={b("value")}>
           {forecast.max_temp[unit]}&#176;{unit}
         </span>
-        <span className="weather-details__forecast-value  weather-details__forecast-value--min">
+        <span className={b("value", { min: true })}>
           {forecast.min_temp[unit]}&#176;{unit}
         </span>
       </div>
@@ -38,7 +40,7 @@ const WeatherForecastCard: FC<WeatherForecastCardProps> = ({
   );
 };
 
-export default WeatherForecastCard;
+export default ForecastCard;
 
 const renderForecastDay = (dateString: string, index: number) => {
   if (index === 0) {

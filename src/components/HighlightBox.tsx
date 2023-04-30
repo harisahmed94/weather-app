@@ -1,6 +1,10 @@
 import { FC } from "react";
-import { highlightsStateWind } from "../services/fakeWeatherService";
-import "./HighlightBox.scss";
+import block from "bem-css-modules";
+
+import { highlightsStateWind } from "../services/app-types";
+
+import s from "./HighlightBox.module.scss";
+const b = block(s);
 
 interface HighlightBoxProps {
   title: string;
@@ -12,16 +16,14 @@ const MAX_PROGRESS = 100;
 
 const HighlightBox: FC<HighlightBoxProps> = ({ data, title, unit }) => {
   const renderBoxData = () => {
-    // const isWind = title === "Wind status";
     if (Array.isArray(data)) {
       return (
         <>
-          <span className="highlight-box__name">{title}</span>
-          <span className="highlight-box__value">
-            <span className="highlight-box__number">{Math.round(data[0])}</span>{" "}
-            {unit}
+          <span className={b("name")}>{title}</span>
+          <span className={b("value")}>
+            <span className={b("number")}>{Math.round(data[0])}</span> {unit}
           </span>
-          <span className="highlight-box__details">{data[1]}</span>
+          <span className={b("details")}>{data[1]}</span>
         </>
       );
     }
@@ -30,20 +32,19 @@ const HighlightBox: FC<HighlightBoxProps> = ({ data, title, unit }) => {
 
     return (
       <>
-        <span className="highlight-box__name">{title}</span>
-        <span className="highlight-box__value">
-          <span className="highlight-box__number">{Math.round(data)}</span>{" "}
-          {unit}
+        <span className={b("name")}>{title}</span>
+        <span className={b("value")}>
+          <span className={b("number")}>{Math.round(data)}</span> {unit}
         </span>
         {isHumidity && (
           <>
-            <div className="highlight-box__label">
-              <span className="highlight-box__label-text">0</span>
-              <span className="highlight-box__label-text">50</span>
-              <span className="highlight-box__label-text">100</span>
+            <div className={b("label")}>
+              <span className={b("label-text")}>0</span>
+              <span className={b("label-text")}>50</span>
+              <span className={b("label-text")}>100</span>
             </div>
             <progress
-              className="highlight-box__progress"
+              className={b("progress")}
               max={MAX_PROGRESS}
               value={data}
             ></progress>
@@ -52,7 +53,7 @@ const HighlightBox: FC<HighlightBoxProps> = ({ data, title, unit }) => {
       </>
     );
   };
-  return <div className="highlight-box">{renderBoxData()}</div>;
+  return <div className={b()}>{renderBoxData()}</div>;
 };
 
 export default HighlightBox;

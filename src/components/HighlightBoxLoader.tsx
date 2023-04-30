@@ -1,10 +1,8 @@
 import ContentLoader from "react-content-loader";
 
-import "./HighlightBoxLoader.scss";
-
 const HighlightBoxLoader = () => (
   <ContentLoader
-    className="asdasda"
+    style={{ width: "100%" }}
     height={201}
     backgroundColor="#1e213a"
     foregroundColor="#585676"
